@@ -23,6 +23,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
+          const SizedBox(height: 24),
           CustomTextField(
             hintText: "Title",
             onSaved: (value) {
@@ -40,26 +41,30 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(height: 45),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
-              return CustomButton(
-                isLoading: state is AddNoteLoading ? true : false,
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    var noteModel = NoteModel(
-                      title: tilte!,
-                      subTilte: subTitle!,
-                      date: DateTime.now().toString(),
-                      color: Colors.blue.value,
-                    );
-                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                },
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 26),
+                child: CustomButton(
+                  isLoading: state is AddNoteLoading ? true : false,
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      var noteModel = NoteModel(
+                        title: tilte!,
+                        subTilte: subTitle!,
+                        date: DateTime.now().toString(),
+                        color: Colors.blue.value,
+                      );
+                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                ),
               );
             },
           ),
+          
         ],
       ),
     );
