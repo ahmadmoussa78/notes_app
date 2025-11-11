@@ -14,11 +14,11 @@ class AddNoteBottomSheet extends StatelessWidget {
       child: SingleChildScrollView(
         child: BlocConsumer<AddNoteCubit, AddNoteState>(
           listener: (context, state) {
-            if (state is AddNoteFailure) {
-              print("failed  ${state.errMessage}");
-            }
             if (state is AddNoteSucess) {
               Navigator.pop(context);
+            }
+            if (state is AddNoteFailure) {
+              print("failed  ${state.errMessage}");
             }
           },
           builder: (context, state) {
