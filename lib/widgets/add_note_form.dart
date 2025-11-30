@@ -57,7 +57,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         title: tilte!,
                         subTilte: subTitle!,
                         date: formattedCurrentDate,
-                        color: Colors.blue.value,
+                        color: Colors.blue.toARGB32(),
                       );
                       BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                     } else {
